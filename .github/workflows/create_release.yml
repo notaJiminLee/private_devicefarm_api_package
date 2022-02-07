@@ -15,6 +15,7 @@ jobs:
       - name: print version
         run: |
           echo ${{ env.VER }}
+
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
@@ -23,10 +24,13 @@ jobs:
 
       - name: Create Release
         uses: actions/create-release@v1
-        env:
+        with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
           body: ${{steps.github_release.outputs.changelog}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Notify to Slack
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{"text":"Kingjimin ${{ env.VER }} version has been released. You can install and update it with the command below.\n```pip3 install kingjimin -U```"}' https://hooks.slack.com/services/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
