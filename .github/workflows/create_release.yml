@@ -1,0 +1,25 @@
+name: Create release
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: set version
+        run: |
+          cd ./api_package
+          echo "VER=$(python setup.py --version)" >> $GITHUB_ENV
+      - name: print version
+        run: |
+          echo ${{ env.VER }}
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v${{ env.VER }}
+          name: Release v${{ env.VER }}
+      - name: Notify to Slack
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Kingjimin ${{ env.VER }} version has been released. You can install and update it with the command below.\n```pip3 install kingjimin -U```"}' https://hooks.slack.com/services/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
