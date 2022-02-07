@@ -1,0 +1,4 @@
+requests
+contextlib2
+polling2
+urllib3

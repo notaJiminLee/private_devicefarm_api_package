@@ -1,0 +1,19 @@
+name: unittest-push
+
+on: [push]
+
+jobs:
+  on_build_actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install requirements
+        run: |
+          cd $GITHUB_WORKSPACE
+          pip3 install mock
+          pip3 install multipledispatch
+          pip3 install polling2
+      - name: show files
+        run: ls -al
+      - name: run unittest
+        run: python -m unittest test
