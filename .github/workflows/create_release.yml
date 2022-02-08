@@ -22,6 +22,22 @@ jobs:
           tag: v${{ env.VER }}
           name: Release v${{ env.VER }}
 
+      - name: Checkout Repository
+        uses: actions/checkout@main
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v2.1.4
+        with:
+          python-version: 3.8.6
+          architecture: x64
+      - name: Get version from tag
+        id: tag_name
+        run: |
+          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
+        shell: bash
+
       - name: Get release notes
         id: generate_notes
         uses: anmarkoulis/commitizen-changelog-reader@master
