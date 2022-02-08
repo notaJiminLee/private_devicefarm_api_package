@@ -10,7 +10,7 @@ install_requires = [
     ]
 
 setup(name='kingjimin',
-version='2.1.35',
+version='2.1.36',
 description='Test Package',
 author='jiminlee',
 author_email='jimin.lee@nota.ai',
