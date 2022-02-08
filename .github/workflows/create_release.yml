@@ -21,6 +21,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commitMode: true
 
       - name: Create Release
         uses: actions/create-release@v1
@@ -30,7 +31,6 @@ jobs:
           body: ${{steps.github_release.outputs.changelog}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          commitMode: true
 
       - name: Notify to Slack
         run: |
