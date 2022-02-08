@@ -21,6 +21,8 @@ jobs:
         with:
           tag: v${{ env.VER }}
           name: Release v${{ env.VER }}
+
+      - name: Print release url
         run: |
           echo ${{steps.create_release.outputs.html_url}}
 
