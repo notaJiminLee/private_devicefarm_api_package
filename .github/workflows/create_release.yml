@@ -15,22 +15,14 @@ jobs:
       - name: print version
         run: |
           echo ${{ env.VER }}
-
-      - name: Build Changelog
-        id: github_release
-        uses: mikepenz/release-changelog-builder-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          commitMode: true
-
-      - name: Create Release
-        uses: actions/create-release@v1
+      - name: Create a GitHub release
+        id: create_release
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: ${{steps.github_release.outputs.changelog}}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{ env.VER }}
+          name: Release v${{ env.VER }}
+        run: |
+          echo ${{steps.create_release.outputs.html_url}}
 
       - name: Notify to Slack
         run: |
