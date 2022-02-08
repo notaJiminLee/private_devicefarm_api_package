@@ -22,9 +22,17 @@ jobs:
           tag: v${{ env.VER }}
           name: Release v${{ env.VER }}
 
+      - name: Get release notes
+        id: generate_notes
+        uses: anmarkoulis/commitizen-changelog-reader@master
+        with:
+          tag_name: ${{ github.ref }}
+          changelog: CHANGELOG.md
+
       - name: Print release url
         run: |
           echo ${{steps.create_release.outputs.html_url}}
+          echo ${{steps.generate_notes.outputs.notes}}
 
       - name: Notify to Slack
         run: |
