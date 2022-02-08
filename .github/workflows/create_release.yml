@@ -28,4 +28,4 @@ jobs:
 
       - name: Notify to Slack
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Kingjimin ${{ env.VER }} version has been released. Click <${{steps.create_release.outputs.html_url}}|here> to check release note.\nYou can install and update it with the command below.\n```pip3 install kingjimin -U```"}' https://hooks.slack.com/services/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
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Kingjimin ${{ env.VER }} version has been released. Click <${{steps.create_release.outputs.html_url}}|here> to check release note.\nYou can install and update it with the command below.\n```pip3 install kingjimin -U```"}' https://hooks.slack.com/services/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
