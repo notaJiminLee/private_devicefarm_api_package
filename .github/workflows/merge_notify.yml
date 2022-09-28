@@ -7,7 +7,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Notify to Slack
         if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{"text":"test message, merged to main"}' https://hooks.slack.com/services/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
+
+      - name: Notify to Slack Test
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"test message"}' https://hooks.slack.com/services/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
