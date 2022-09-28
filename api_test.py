@@ -1,7 +1,6 @@
 import json
 from api_package.kingjimin.kingjimin import DeviceFarmGateway
 
-
 if __name__ == "__main__":
     # initialize
     apiclass = DeviceFarmGateway("gateway.devicefarm-dev.netspresso.ai", "80")
