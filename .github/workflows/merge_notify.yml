@@ -12,8 +12,8 @@ jobs:
       - name: Notify to Slack
         if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"test message, merged to main"}' ${{ secrets.SLACK_WEBHOOK }}
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"test message, merged to main"}' ${{ secrets.WEBHOOK_KEY }}
 
       - name: Notify to Slack Test
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"test message"}' ${{ secrets.SLACK_WEBHOOK }}
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"test message"}' ${{ secrets.WEBHOOK_KEY }}
