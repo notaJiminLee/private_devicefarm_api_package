@@ -9,6 +9,7 @@ def make_content(return_value, byte_str):
     response.content = byte_str.encode('utf8')
     return response
 
+
 class DFTests(unittest.TestCase):
     apiclass = DeviceFarmGateway("gateway.devicefarm-dev.netspresso.ai", "80")
 
